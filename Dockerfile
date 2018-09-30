@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y net-tools wget libwww-perl libjson-perl
     dpkg -i moloch_1.5.3-1_amd64.deb && \
     apt-get --fix-broken install && \
     rm -f /home/tmp/* && rm -rf /var/lib/apt/lists/* && \
-    source /data/moloch-setup.sh
+    chmod +x /data/moloch-setup.sh && /data/moloch-setup.sh
     
 
 VOLUME [ "/data/moloch/raw" ]
