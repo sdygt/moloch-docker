@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y net-tools wget libwww-perl libjson-perl
     wget "https://files.molo.ch/builds/ubuntu-18.04/moloch_1.5.3-1_amd64.deb" && \
     dpkg -i moloch_1.5.3-1_amd64.deb && \
     apt-get --fix-broken install && \
-    rm -f /home/tmp/* && rm -rf /var/lib/apt/lists/* && \
-    chmod +x /data/moloch-setup.sh && /data/moloch-setup.sh
+    rm -f /home/tmp/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp
+RUN chmod 755 /data/moloch-setup.sh && /data/moloch-setup.sh
     
 
 VOLUME [ "/data/moloch/raw" ]
