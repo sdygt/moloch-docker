@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Running run-moloch.sh"
 echo ${MOLOCH_ELASTICSEARCH}
-/data/wait-for-it.sh ${MOLOCH_ELASTICSEARCH} --timeout 60
+/data/wait-for-it.sh ${MOLOCH_ELASTICSEARCH} --timeout=60
 if [ $? -ne 0 ]; then
     echo "Exiting." 1>&2
     exit 1
