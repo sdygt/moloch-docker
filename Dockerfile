@@ -3,7 +3,6 @@ LABEL maintainer="root@sdygt.net"
 
 ENV MOLOCH_ELASTICSEARCH http://127.0.0.1:9200
 ENV MOLOCH_INTERFACE eth0
-ENV MOLOCH_INET yes
 
 ADD /scripts /data/
 
@@ -16,6 +15,7 @@ RUN apt-get update && apt-get install -y net-tools wget libwww-perl libjson-perl
 RUN chmod +x /data/moloch-setup.sh /data/run-moloch.sh && /data/moloch-setup.sh
     
 VOLUME [ "/data/moloch/raw" ]
+VOLUME [ "/data/pcap" ]
 
 EXPOSE 8005/tcp
 WORKDIR /data/moloch/viewer/

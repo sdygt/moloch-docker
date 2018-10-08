@@ -1,26 +1,16 @@
 #!/bin/bash
 
 ################################################################################
-
 MOLOCH_INSTALL_DIR=/data/moloch
 MOLOCH_NAME=moloch
 if [ -z "$MOLOCH_INTERFACE" ]; then MOLOCH_INTERFACE="eth0"; fi
 
-
-
 ################################################################################
 echo "Moloch - Creating configuration files"
-if [ ! -f "/data/moloch/etc/config.ini" ]; then
-    echo sed -e "s/passwordSecret =/# passwordSecret =/g" -e "s/MOLOCH_INTERFACE/${MOLOCH_INTERFACE}/g" -e "s,MOLOCH_INSTALL_DIR,${MOLOCH_INSTALL_DIR},g" < /data/moloch/etc/config.ini.sample > /data/moloch/etc/config.ini
-    sed -e "s/passwordSecret =/# passwordSecret =/g" -e "s/MOLOCH_INTERFACE/${MOLOCH_INTERFACE}/g" -e "s,MOLOCH_INSTALL_DIR,${MOLOCH_INSTALL_DIR},g" < /data/moloch/etc/config.ini.sample > /data/moloch/etc/config.ini
-else
-    echo "Not overwriting /data/moloch/etc/config.ini, delete and run again if update required (usually not), or edit by hand"
-    sleep 2
-fi
-
+echo sed -e "s/passwordSecret =/# passwordSecret =/g" -e "s/MOLOCH_INTERFACE/${MOLOCH_INTERFACE}/g" -e "s,MOLOCH_INSTALL_DIR,${MOLOCH_INSTALL_DIR},g" < /data/moloch/etc/config.ini.sample > /data/moloch/etc/config.ini
+sed -e "s/passwordSecret =/# passwordSecret =/g" -e "s/MOLOCH_INTERFACE/${MOLOCH_INTERFACE}/g" -e "s,MOLOCH_INSTALL_DIR,${MOLOCH_INSTALL_DIR},g" < /data/moloch/etc/config.ini.sample > /data/moloch/etc/config.ini
 
 ################################################################################
-
 mkdir -p /data/moloch/logs /data/moloch/raw
 chown nobody /data/moloch/logs /data/moloch/raw
 chmod 0700 /data/moloch/raw
@@ -64,14 +54,8 @@ EOF
 fi
 
 ################################################################################
-
-if [ "$MOLOCH_INET" == "yes" ]; then
-    echo "Moloch - Downloading GEO files"
-    /data/moloch/bin/moloch_update_geo.sh > /dev/null
-else
-    echo "Moloch - NOT downloading GEO files"
-fi
-
+echo "Moloch - Downloading GEO files"
+/data/moloch/bin/moloch_update_geo.sh > /dev/null
 
 ################################################################################
 echo ""
