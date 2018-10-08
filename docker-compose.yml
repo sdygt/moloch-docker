@@ -2,6 +2,8 @@ version: "3"
 services:
   moloch:
     image: sdygt/moloch-docker:latest
+    volumes:
+      - moloch_raw_pcap:/data/moloch/raw
     depends_on:
       - elasticsearch
     environment:
@@ -14,3 +16,5 @@ services:
     expose:
       - "9200"
     restart: unless-stopped
+volumes:
+  moloch_raw_pcap:
